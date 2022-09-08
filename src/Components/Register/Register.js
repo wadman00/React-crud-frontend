@@ -57,7 +57,6 @@ const Register = () => {
         })
             .then(response =>response.json())
             .then(result=>{
-                
                 switch(result){
                     case "USER_EXIST":
                         alert("The user exist");
