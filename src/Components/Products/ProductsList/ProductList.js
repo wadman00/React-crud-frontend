@@ -7,6 +7,7 @@ import  { useNavigate } from "react-router";
 const ProductList = (props) => {
 
     const [products,setProducts] = useState([]);
+    const [isDeleted,setDeleted] = useState(false);
 
     const { user, onSignOut } = props; 
 
@@ -21,8 +22,16 @@ const ProductList = (props) => {
 
         setProducts(products);
         
+        if (isDeleted) {
+            setDeleted(false);
+            
+        }
 
-    },[]);
+    },[isDeleted]);
+
+    const onDeleteProduct = ()=>{
+        setDeleted(true);
+    }
 
     const getProducts = async ()=>{
 
@@ -66,7 +75,7 @@ const ProductList = (props) => {
                     <tbody>
                         
                         {products.map((product,row)=>{
-                            return <ProductItem product={product} key =  {row+1} row={row+1}/>
+                            return <ProductItem product={product} key =  {row+1} row={row+1} onDeleteProduct={onDeleteProduct} />
                         })}
                     </tbody>
                 </table>
